@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Edit Profile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        .lucas {
+            font-size: 100px
+        }
+    </style>
+ </head >
+<body>
+
+    <section id="banner">
+        <div class="inner">
+            <header>
+                <div class="image round fit">
+                    <img src="images/pic04.jpg" alt="" />
+                </div>
+                <h1>My Profile</h1>
+                <p>Name of Account(to be added by database)</p>
+            </header>
+        </div>
+    </section>
+
+    <form action="/action_page.php">
+        <h3>Select a file to change your profile picture:</h3> <input type="file" name="myFile"> <br><br>
+    </form>
+
+    <form action="/action_page.php">
+        <label for="Nome">Name</label>
+        <input type="text" name="UsrName"/><br>
+        <label for="Sobrenome">Last Name</label>
+        <input type="text" name="LastName"><br>
+        <label for="Cidade/Estado">City</label>
+        <input type="text" name="Local"><br><br>
+        <label for="Biografia">Biografy</label>
+        <input type="text" name="Bio" ><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+</body>
+        </html >

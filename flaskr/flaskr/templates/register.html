@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>CityRunning</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+  
+	<body>
+		<div style="text-align: center;">
+			<h1>Please login</h1>
+			<br>
+			<form action="" method="post">
+				<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+				<input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+				<input type="submit" name="LaterButton" value="Not now!">
+				<input type="submit" name="RegisterButton" value="Register">
+			</form>
+			{% if error %}
+				<p class="error"><strong>Error:</strong> {{ error }}
+			{% endif %}
+		</div>
+	</body>
+</html>
