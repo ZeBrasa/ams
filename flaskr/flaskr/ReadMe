@@ -1,0 +1,14 @@
+#Maquina Windows
+#dentro do directório flaskr
+
+cd ..
+$env:FLASK_APP = "flaskr"
+$env:FLASK_ENV = "development"
+flask run
+
+
+
+#inicializar database:
+$env:FLASK_APP = "flaskr"
+$env:FLASK_ENV = "development"
+flask init-db
