@@ -62,9 +62,9 @@
   <label id="icon" for="name"><i class="icon-envelope "></i></label>
   <input type="text" name="name" id="name" placeholder="Email" required/>
   <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="name" id="name" placeholder="Name" value="{{ request.form.username }}"required/>
+  <input input type="text" placeholder="Username" name="username" value="{{ request.form.username }}"required/>
   <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="name" id="name" placeholder="Password" value="{{ request.form.password }}"required/>
+  <input input type="password" placeholder="Password" name="password" value="{{ request.form.password }}"required/>
   <div class="gender">
     <input type="radio" value="None" id="male" name="gender" checked/>
     <label for="male" class="radio" chec>Male</label>
