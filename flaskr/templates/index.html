@@ -10,6 +10,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
 	</head>
 	<body>
 	<!-- Header -->
@@ -25,6 +27,8 @@
 					<form action="" method="post">
 						<input type="submit" name="Home" value="Home" />
 						<hr>
+						<input type="submit" name="Events" value="Events" />
+						<hr>
 						<input type="submit" name="Elements" value="Elements" />
 						<hr>
 						<input type="submit" name="Login" value="Login" />
@@ -35,6 +39,8 @@
 					Olá, {{ username }} 
 					<form action="" method="post">
 						<input type="submit" name="Home" value="Home" />
+						<hr>
+						<input type="submit" name="Events" value="Events" />
 						<hr>
 						<input type="submit" name="Elements" value="Elements" />
 						<hr>

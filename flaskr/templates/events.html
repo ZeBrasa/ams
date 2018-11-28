@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Sports Eventes</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+	</head>
+	<body>
+	<!-- Header -->
+		<header id="header" class="alt">
+			<div class="logo"><a href="index.html"> <span> </span></a></div>
+			<a href="#menu">Menu</a>
+		</header>
+
+	<!-- Nav -->
+		<nav id="menu">
+			<ul class="links">
+				{% if not session['logged_in'] %}
+					<form action="" method="post">
+						<input type="submit" name="Home" value="Home" />
+						<hr>
+						<input type="submit" name="Events" value="Events" />
+						<hr>
+						<input type="submit" name="Elements" value="Elements" />
+						<hr>
+						<input type="submit" name="Login" value="Login" />
+						<hr>
+						<input type="submit" name="Register" value="Register" />
+					</form>
+				{% else %}
+					Olá, {{ username }} 
+					<form action="" method="post">
+						<input type="submit" name="Home" value="Home" />
+						<hr>
+						<input type="submit" name="Events" value="Events" />
+						<hr>
+						<input type="submit" name="Elements" value="Elements" />
+						<hr>
+						<input type="submit" name="Log Out" value="Logout" />
+					</form>
+				{% endif %}
+			</ul>
+		</nav>
+		
+	<!-- Main -->
+		<div id="main">
+			<!-- Section -->
+				<section class="wrapper style2">
+					<div class="inner">
+						<!-- 2 Columns -->
+							<div class="flex flex-2">
+								<div class="col col1">
+									<div class="image round fit">
+										<a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" /></a>
+									</div>
+								</div>
+								<div class="col col2">
+									<h3>Events Around the World</h3>
+									{% for message in get_Events %}
+									<p>
+										{{ message[0] }} -- {{ message[1] }} -- {{ message[2] }}
+									</p>
+									{% endfor %}
+								</div>
+							</div>
+					</div>
+				</section>
+		</div>
+
+	<!-- Footer -->
+		<footer id="footer">
+			<div class="copyright">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul>
+				<p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>
+			</div>
+		</footer>
+
+	<!-- Scripts -->
+		<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/jquery.scrolly.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/jquery.scrollex.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/skel.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/util.js') }}"></script>
+		<script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+
+	</body>
+</html>

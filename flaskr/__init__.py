@@ -2,6 +2,9 @@ import os
 from flask import Flask, render_template, redirect, url_for, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
+from datetime import datetime, date
+from random import randint, random
+import time
 import sqlite3
 
 
@@ -31,15 +34,25 @@ def create_app(test_config=None):
 
     @app.route('/', methods=['GET', 'POST'])
     def index(username=None):
-        if 'username' in session:
-            print(session['username'])
-        else:
-            print('fuck')
+        date = datetime.now()
+        print(date)
+        date = date.replace(month=randint(datetime.now().timetuple()[1],12), day=randint(datetime.now().timetuple()[2],30), hour=randint(0,23), minute=randint(0,1)*30 )
+        print(date)
+        
+        database = db.get_db()
+        database.execute('INSERT INTO eventsdata VALUES (?,?,?);', (date, str(random()*180-float(90)), str(random()*360-float(180))) )
+        database.commit()
            
         if request.method == 'POST':
             #request.form listens to name(on input)<input .... name="..">
-            if 'Login' in request.form:
+            if 'Home' in request.form:
+                return redirect(url_for('index'))
+            elif 'Login' in request.form:
                 return redirect(url_for('login'))
+            elif 'Events' in request.form:
+                return redirect(url_for('events'))
+            elif 'Elements' in request.form:
+                return redirect(url_for('elements'))
             elif 'Register' in request.form:
                 return redirect(url_for('register'))
             elif 'Log Out' in request.form:
@@ -51,6 +64,31 @@ def create_app(test_config=None):
             return render_template('index.html', username=session['username'] )
         else:
             return render_template('index.html', username=None)
+            
+    @app.route('/events', methods=['GET', 'POST'])
+    def events():
+        if request.method == 'POST':
+            #request.form listens to name(on input)<input .... name="..">
+            if 'Home' in request.form:
+                return redirect(url_for('index'))
+            elif 'Login' in request.form:
+                return redirect(url_for('login'))
+            elif 'Events' in request.form:
+                return redirect(url_for('events'))
+            elif 'Elements' in request.form:
+                return redirect(url_for('elements'))
+            elif 'Register' in request.form:
+                return redirect(url_for('register'))
+            elif 'Log Out' in request.form:
+                session.pop('username', None)
+                session.pop('logged_in', None)
+                return render_template('index.html', username=None)
+    
+        database = db.get_db()
+        data = database.execute('SELECT * FROM eventsData').fetchall()
+        
+        get_Events = data
+        return render_template('events.html', get_Events=get_Events)
         
     # Route for handling the login page logic
     @app.route('/login', methods=['GET', 'POST'])
@@ -109,6 +147,4 @@ def create_app(test_config=None):
   
         return render_template('register.html', error=error)
         
-        
-    
     return app

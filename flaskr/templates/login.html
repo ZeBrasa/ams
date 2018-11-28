@@ -1,7 +1,9 @@
-<!-- <html>
+<html>
 	<head>
 		<title>CityRunning</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+		<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+		<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
 	</head>
   
 	<body>
@@ -16,37 +18,6 @@
 			{% if error %}
 				<p class="error"><strong>Error:</strong> {{ error }}
 			{% endif %}
-		</div>		
+		</div>
 	</body>
-</html> -->
-<link href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600') }}" rel='stylesheet' type='text/css'>
-<link href="{{ url_for('static', filename='https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css')}} " rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='resgis.css') }}">
-
-<div class="testbox">
-  <h1>Login</h1>
-
-  <form action="/">
-      <!-- <hr>
-    <div class="accounttype">
-      <input type="radio" value="None" id="radioOne" name="account" checked/>
-      <label for="radioOne" class="radio" chec>Personal</label>
-      <input type="radio" value="None" id="radioTwo" name="account" />
-      <label for="radioTwo" class="radio">Company</label>
-    </div>
-  <hr> -->
-
-  <label id="icon" for="name"><i class="icon-user"></i></label>
-  <input type="text" name="username" id="name" placeholder="Username" value="{{ request.form.username }}"required/>
-  <label id="icon" for="name"><i class="icon-shield"></i></label>
-  <input type="password" name="password" id="name" placeholder="Password" value="{{ request.form.password }}"required/>
-  <div class="gender">
-    <input type="radio" value="None" id="male" name="gender" checked/>
-    <label for="male" class="radio" chec>Male</label>
-    <input type="radio" value="None" id="female" name="gender" />
-    <label for="female" class="radio">Female</label>
-   </div> 
-   <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
-   <a href="MyProfile.html" class="button">Login</a>
-  </form>
-</div>
+</html>
