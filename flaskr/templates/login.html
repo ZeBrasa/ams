@@ -1,0 +1,53 @@
+<!-- <html>
+	<head>
+		<title>CityRunning</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	</head>
+  
+	<body>
+		<div class="white-box">
+			<h1>Please login</h1>
+			<br>
+			<form action="" method="post">
+				<input type="text" placeholder="Username" name="username" value="{{ request.form.username }}">
+				<input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
+				<input type="submit" value="Login">
+			</form>
+			{% if error %}
+				<p class="error"><strong>Error:</strong> {{ error }}
+			{% endif %}
+		</div>		
+	</body>
+</html> -->
+<link href="{{ url_for('static', filename='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600') }}" rel='stylesheet' type='text/css'>
+<link href="{{ url_for('static', filename='https://netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css')}} " rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='resgis.css') }}">
+
+<div class="testbox">
+  <h1>Login</h1>
+
+  <form action="/">
+      <!-- <hr>
+    <div class="accounttype">
+      <input type="radio" value="None" id="radioOne" name="account" checked/>
+      <label for="radioOne" class="radio" chec>Personal</label>
+      <input type="radio" value="None" id="radioTwo" name="account" />
+      <label for="radioTwo" class="radio">Company</label>
+    </div>
+  <hr> -->
+  <label id="icon" for="name"><i class="icon-envelope "></i></label>
+  <input type="text" name="name" id="name" placeholder="Email" required/>
+  <label id="icon" for="name"><i class="icon-user"></i></label>
+  <input type="text" name="name" id="name" placeholder="Name" required/>
+  <label id="icon" for="name"><i class="icon-shield"></i></label>
+  <input type="password" name="name" id="name" placeholder="Password" required/>
+  <div class="gender">
+    <input type="radio" value="None" id="male" name="gender" checked/>
+    <label for="male" class="radio" chec>Male</label>
+    <input type="radio" value="None" id="female" name="gender" />
+    <label for="female" class="radio">Female</label>
+   </div> 
+   <p>By clicking Register, you agree on our <a href="#">terms and condition</a>.</p>
+   <a href="#" class="button">Register</a>
+  </form>
+</div>
