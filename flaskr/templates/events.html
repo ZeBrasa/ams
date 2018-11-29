@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Sports Eventes</title>
+		<title>Sports Events</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
@@ -42,7 +42,7 @@
 						<hr>
 						<input type="submit" name="Events" value="Events" />
 						<hr>
-						<input type="submit" name="Elements" value="Elements" />
+						<input type="submit" name="Profile" value="MyProfile" />
 						<hr>
 						<input type="submit" name="Log Out" value="Logout" />
 					</form>
@@ -64,9 +64,18 @@
 								</div>
 								<div class="col col2">
 									<h3>Events Around the World</h3>
+									<table style="width:100%">
+											<tr>
+											  <th>Tipo</th>
+											  <th>Limite</th> 
+											  <th>Data</th>
+											  <th>Latitude</th>
+											  <th>Longitude</th>
+											</tr>
+									</table>
 									{% for message in get_Events %}
-									<p>
-										{{ message[0] }} -- {{ message[1] }} -- {{ message[2] }}
+									<p>	
+										{{ message[0] }} -- {{ message[1] }} -- {{ message[2] }} -- {{ message[3] }} -- {{ message[4] }}
 									</p>
 									{% endfor %}
 								</div>

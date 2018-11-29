@@ -38,9 +38,10 @@ def create_app(test_config=None):
         print(date)
         date = date.replace(month=randint(datetime.now().timetuple()[1],12), day=randint(datetime.now().timetuple()[2],30), hour=randint(0,23), minute=randint(0,1)*30 )
         print(date)
-        
+        limite = 100
+        tipoE = "Corrida"
         database = db.get_db()
-        database.execute('INSERT INTO eventsdata VALUES (?,?,?);', (date, str(random()*180-float(90)), str(random()*360-float(180))) )
+        database.execute('INSERT INTO eventsdata VALUES (?,?,?,?,?);', (tipoE, limite, date, str(random()*180-float(90)), str(random()*360-float(180))) )
         database.commit()
            
         if request.method == 'POST':
@@ -146,5 +147,14 @@ def create_app(test_config=None):
                     error = 'User already registered. Please use another user.'
   
         return render_template('register.html', error=error)
-        
+        '''
+        @app.route('/profile', methods=['GET', 'POST'])
+        def profile():
+
+            database = db.get_db()
+            data = database.execute('SELECT * FROM userProfile').fetchall()
+            
+            get_Events = data
+            return render_template('profile.html', get_Profile=get_Profile)
+        '''
     return app

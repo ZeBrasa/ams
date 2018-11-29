@@ -7,7 +7,6 @@ CREATE TABLE userData (
 );
 
 CREATE TABLE eventsData (
-	id_events int NOT NULL,
 	tipo_evento text NOT NULL,
 	limite int NOT NULL,
 	timest TEXT UNIQUE NOT NULL,
@@ -18,7 +17,9 @@ CREATE TABLE eventsData (
 CREATE TABLE userProfile(
 	nome text NOT NULL,
 	idade int NOT NULL,
+	sexo text NOT NULL,
 	score int NOT NULL,
+	bpm int NOT NULL,
 	peso FLOAT NOT NULL,
 	altura FLOAT NOT NULL
 );
