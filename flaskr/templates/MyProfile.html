@@ -4,14 +4,10 @@
     <head>
         <title>My Profile</title>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="assets/css/main.css" />
-        <style>
-            .lucas {
-                font-size: 100px
-            }
-            .container{ position:relative;}.topright{top:10px; right:10px;}
-        </style>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
     </head>
     <body>
         <!-- Header -->
@@ -22,12 +18,33 @@
 
         <!-- Nav -->
         <nav id="menu">
-            <ul class="links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="logIn.html">Log In</a></li>
-                <li><a href="elements.html">Elements</a></li>
-            </ul>
-        </nav>
+			<ul class="links">
+				{% if not session['logged_in'] %}
+					<form action="" method="post">
+						<input type="submit" name="Home" value="Home" />
+						<hr>
+						<input type="submit" name="Events" value="Events" />
+						<hr>
+						<input type="submit" name="Elements" value="Elements" />
+						<hr>
+						<input type="submit" name="Login" value="Login" />
+						<hr>
+						<input type="submit" name="Register" value="Register" />
+					</form>
+				{% else %}
+					Olá, {{ username }} 
+					<form action="" method="post">
+						<input type="submit" name="Home" value="Home" />
+						<hr>
+						<input type="submit" name="Events" value="Events" />
+						<hr>
+						<input type="submit" name="Profile" value="MyProfile" />
+						<hr>
+						<input type="submit" name="Log Out" value="Logout" />
+					</form>
+				{% endif %}
+			</ul>
+		</nav>
 
         <!-- Banner -->
         <section id="banner">

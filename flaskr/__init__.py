@@ -52,8 +52,8 @@ def create_app(test_config=None):
                 return redirect(url_for('login'))
             elif 'Events' in request.form:
                 return redirect(url_for('events'))
-            elif 'Elements' in request.form:
-                return redirect(url_for('elements'))
+            elif 'Profile' in request.form:
+                return redirect(url_for('profile'))
             elif 'Register' in request.form:
                 return redirect(url_for('register'))
             elif 'Log Out' in request.form:
@@ -76,8 +76,8 @@ def create_app(test_config=None):
                 return redirect(url_for('login'))
             elif 'Events' in request.form:
                 return redirect(url_for('events'))
-            elif 'Elements' in request.form:
-                return redirect(url_for('elements'))
+            elif 'MyProfile' in request.form:
+                return redirect(url_for('profile'))
             elif 'Register' in request.form:
                 return redirect(url_for('register'))
             elif 'Log Out' in request.form:
@@ -147,14 +147,13 @@ def create_app(test_config=None):
                     error = 'User already registered. Please use another user.'
   
         return render_template('register.html', error=error)
-        '''
-        @app.route('/profile', methods=['GET', 'POST'])
-        def profile():
-
-            database = db.get_db()
-            data = database.execute('SELECT * FROM userProfile').fetchall()
-            
-            get_Events = data
-            return render_template('profile.html', get_Profile=get_Profile)
-        '''
+        
+    @app.route('/profile', methods=['GET', 'POST'])
+    def profile():
+        if request.method == 'POST':
+            user = session['username'] 
+        
+        if 'username' in session:
+            return render_template('Myprofile.html', username=session['username'] )
+        
     return app
