@@ -76,7 +76,10 @@
 									{% for message in get_Events %}
 									<p>	
 										{{ message[0] }} -- {{ message[1] }} -- {{ message[2] }} -- {{ message[3] }} -- {{ message[4] }}
-									</p>
+										-- <a href="http://maps.google.com?q={{ message[3][0:7] }}, {{ message[4][0:7] }}">
+										-- <img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt=alt="Trulli" width="500" height="333">
+										-- <button type="button">View local!</button></a>
+									</p>1
 									{% endfor %}
 								</div>
 							</div>
