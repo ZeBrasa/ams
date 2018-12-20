@@ -29,8 +29,6 @@
 						<hr>
 						<input type="submit" name="Events" value="Events" />
 						<hr>
-						<input type="submit" name="Elements" value="Elements" />
-						<hr>
 						<input type="submit" name="Login" value="Login" />
 						<hr>
 						<input type="submit" name="Register" value="Register" />
@@ -59,7 +57,7 @@
 							<div class="flex flex-2">
 								<div class="col col1">
 									<div class="image round fit">
-										<a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" /></a>
+										<a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/cayote.jpg') }}" alt="" /></a>
 									</div>
 								</div>
 								<div class="col col2">
@@ -71,16 +69,28 @@
 											  <th>Data</th>
 											  <th>Latitude</th>
 											  <th>Longitude</th>
+											  <th>Local</th>
+											  {% if session['logged_in'] %}
+											  <th></th>
+											  {% endif %}
 											</tr>
-									</table>
+									<form action="" method="post">
+									
 									{% for message in get_Events %}
-									<p>	
-										{{ message[0] }} -- {{ message[1] }} -- {{ message[2] }} -- {{ message[3] }} -- {{ message[4] }}
-										-- <a href="http://maps.google.com?q={{ message[3][0:7] }}, {{ message[4][0:7] }}">
-										-- <img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt=alt="Trulli" width="500" height="333">
-										-- <button type="button">View local!</button></a>
-									</p>1
+										<tr>
+											<th>{{ message[1] }}</th>
+											<th>{{ message[2] }}</th>
+											<th>{{ message[3] }}</th>
+											<th>{{ message[4][:6] }}</th>
+											<th>{{ message[5][:6] }}</th>
+											<th><a href="http://maps.google.com?q={{ message[4][0:7] }}, {{ message[5][0:7] }}"><button type="button">Ver local</button></a></th>
+											{% if session['logged_in'] %}
+											<th><input type="submit" name="{{ loop.index0 }}" value="Participar" /></th>
+											{% endif %}
+										</tr>
 									{% endfor %}
+									</form>
+									</table>
 								</div>
 							</div>
 					</div>

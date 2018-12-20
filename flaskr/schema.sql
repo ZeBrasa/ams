@@ -3,10 +3,12 @@ DROP TABLE IF EXISTS eventsData;
 DROP TABLE IF EXISTS userProfile;
 CREATE TABLE userData (
 	username TEXT UNIQUE NOT NULL,
-	password TEXT NOT NULL
+	password TEXT NOT NULL,
+	events_joined TEXT
 );
 
 CREATE TABLE eventsData (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	tipo_evento text NOT NULL,
 	limite int NOT NULL,
 	timest TEXT UNIQUE NOT NULL,
