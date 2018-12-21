@@ -25,3 +25,18 @@ CREATE TABLE userProfile(
 	peso FLOAT NOT NULL,
 	altura FLOAT NOT NULL
 );
+
+CREATE TABLE products(
+	nomeProd text NOT NULL,
+	preco FLOAT NOT NULL,
+);
+
+CREATE TABLE kart(
+	userId  text NOT NULL,
+	productId  FLOAT NOT NULL,
+);
+
+CREATE TABLE Orders(
+	userId  text NOT NULL,
+	productId  FLOAT NOT NULL,
+);

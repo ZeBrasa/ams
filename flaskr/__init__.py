@@ -170,7 +170,6 @@ def create_app(test_config=None):
   
         return render_template('register.html', error=error)
      
-    ##TODO: mas o que é isto????
     @app.route('/profile', methods=['GET', 'POST'])
     def profile():
         if request.method == 'POST':
@@ -190,7 +189,59 @@ def create_app(test_config=None):
                 return render_template('index.html', username=None)
         
         if 'username' in session:
-            return render_template('MyProfile.html', username=session['username'])
+            database = db.get_db()
+            lt = tuple(json.loads(database.execute('SELECT events_joined FROM userData WHERE username=?;',(session['username'],)).fetchone()[0]))
+            print(lt)
+            lt1 = database.execute('SELECT * FROM eventsData;').fetchall()
+            ltFinal = []
+            for x in lt1:
+                if x[0] in lt:
+                    ltFinal.append(list(x))
+            print('Final:', ltFinal)
+            
+        if 'username' in session:
+            return render_template('MyProfile.html', username=session['username'], get_Events=ltFinal)
         return render_template('MyProfile.html', username=None)
-        
+
+    @app.route("/cart")
+    def cart():
+        if 'username' in session:
+            database = db.get_db()
+            userId  = database.execute('SELECT nome FROM userProfile WHERE username =?;',(session['username'],)).fetchone()[0]
+            products = database.execute('SELECT nomeProd, preco FROM products, kart WHERE products.nomeProd = kart.productId AND kart.userId = ' + str(userId)).database.fetchall()
+        totalPrice = 0
+        for row in products:
+            totalPrice += row[2]
+        return render_template("cart.html", nomeProd = products, preco=totalPrice)
+
+    @app.route("/addToCart")
+    def addToCart():
+        if 'email' not in session:
+            return redirect(url_for('loginForm'))
+        else:
+            productId = int(request.args.get('productId'))
+            database = db.get_db()
+            userId = database.execute('SELECT nome FROM userProfile WHERE =?;',(session['username'],)).fetchone()[0]
+            try:
+                database.execute("INSERT INTO kart (userId, productId) VALUES (?, ?)", (userId, productId))
+                database.commit()
+                msg = "Added successfully"
+            except:
+                database.rollback()
+                msg = "Error occured"
+            database.close()
+    @app.route("/checkout", methods=['GET','POST'])
+    def payment():
+        if 'username' in session:
+            database = db.get_db()
+            userId  = database.execute('SELECT nome FROM userProfile WHERE username =?;',(session['username'],)).fetchone()[0]
+            products = database.execute('SELECT nomeProd, preco FROM products, kart WHERE products.nomeProd = kart.productId AND kart.userId = ' + str(userId)).database.fetchall()
+        totalPrice = 0
+        for row in products:
+            totalPrice += row[2]
+            print(row)
+            database.execute("INSERT INTO Orders (userId, productId) VALUES (?, ?)", (userId, row[0]))
+        database.execute("DELETE FROM kart WHERE userId = " + str(userId))
+        database.commit()
+        return render_template("checkout.html", products = products, preco=totalPrice)    
     return app

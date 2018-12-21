@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Sports Events</title>
+		<title>Sports Eventes</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
@@ -29,6 +29,8 @@
 						<hr>
 						<input type="submit" name="Events" value="Events" />
 						<hr>
+						<input type="submit" name="Elements" value="Elements" />
+						<hr>
 						<input type="submit" name="Login" value="Login" />
 						<hr>
 						<input type="submit" name="Register" value="Register" />
@@ -40,7 +42,7 @@
 						<hr>
 						<input type="submit" name="Events" value="Events" />
 						<hr>
-						<input type="submit" name="Profile" value="MyProfile" />
+						<input type="submit" name="Elements" value="Elements" />
 						<hr>
 						<input type="submit" name="Log Out" value="Logout" />
 					</form>
@@ -57,40 +59,16 @@
 							<div class="flex flex-2">
 								<div class="col col1">
 									<div class="image round fit">
-										<a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/cayote.jpg') }}" alt="" /></a>
+										<a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" /></a>
 									</div>
 								</div>
 								<div class="col col2">
 									<h3>Events Around the World</h3>
-									<table style="width:100%">
-											<tr>
-											  <th>Tipo</th>
-											  <th>Limite</th> 
-											  <th>Data</th>
-											  <th>Latitude</th>
-											  <th>Longitude</th>
-											  <th>Local</th>
-											  {% if session['logged_in'] %}
-											  <th></th>
-											  {% endif %}
-											</tr>
-									<form action="" method="post">
-									
 									{% for message in get_Events %}
-										<tr>
-											<th>{{ message[1] }}</th>
-											<th>{{ message[2] }}</th>
-											<th>{{ message[3] }}</th>
-											<th>{{ message[4][:6] }}</th>
-											<th>{{ message[5][:6] }}</th>
-											<th><a href="http://maps.google.com?q={{ message[4][0:7] }}, {{ message[5][0:7] }}"><button type="button">Ver local</button></a></th>
-											{% if session['logged_in'] %}
-											<th><input type="submit" name="{{ loop.index0 }}" value="Participar" /></th>
-											{% endif %}
-										</tr>
+									<p>
+										{{ message[0] }} -- {{ message[1] }} -- {{ message[2] }}
+									</p>
 									{% endfor %}
-									</form>
-									</table>
 								</div>
 							</div>
 					</div>
@@ -101,9 +79,9 @@
 		<footer id="footer">
 			<div class="copyright">
 				<ul class="icons">
-					<li><a href="https://twitter.com/" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="https://www.facebook.com/" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="https://www.instagram.com/" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
 					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
 				</ul>
 				<p>&copy; Untitled. All rights reserved. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com">Unsplash</a>.</p>

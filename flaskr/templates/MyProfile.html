@@ -52,10 +52,10 @@
                         <img src="{{ url_for('static', filename='images/pic04.jpg') }}" alt="" />
                     </div>
                     <h1>My Profile</h1>
-                    <p>Name of Account(to be added by database)</p>
+                    <p>{{ username }}</p>
                 </header>
 
-                <a href="#main" class="button big scrolly">Edit Profile</a>
+                <a href="#main" class="button big scrolly">See my Events</a>
             </div>
         </section>
 
@@ -64,37 +64,50 @@
 
             <!-- Section -->
             <section class="wrapper style2">
-                <div class="container">
-                    <a href="#" class="button">See All Posts</a>
-                </div>
-                <center>
-                    <h3>
-                        Publications
-                    </h3>
-                </center>
+				<div class="inner">
+					<!-- 2 Columns -->
+						<div class="flex flex-2">
+							<div class="col col1">
+								<div class="image round fit">
+									<a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/cayote.jpg') }}" alt="" /></a>
+								</div>
+							</div>
+							<div class="col col2">
+								<h3>Events You are In!</h3>
+								<table style="width:100%">
+										<tr>
+										  <th>Tipo</th>
+										  <th>Data</th>
+										  <th>Latitude</th>
+										  <th>Longitude</th>
+										  <th>Local</th>
+										</tr>
+								{% for message in get_Events %}
+									<tr>
+										<th>{{ message[1] }}</th>
+										<th>{{ message[3] }}</th>
+										<th>{{ message[4][:6] }}</th>
+										<th>{{ message[5][:6] }}</th>
+										<th><a href="http://maps.google.com?q={{ message[4][0:7] }}, {{ message[5][0:7] }}"><button type="button">Ver local</button></a></th>
+								{% endfor %}
+                                </table>
+                                
+                                
+                                
+							</div>
+						</div>
+				</div>
+            </section>
 
+            <section class="wrapper style1">
                 <div class="inner">
-                    <!-- 2 Columns -->
-                    <div class="flex flex-3">
-                        <div class="col col1">
-                            <div class="image round fit">
-                                <a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/pic01.jpg') }}" alt="" /></a>
-                                <strong>Ultimo Evento(link to database)</strong>
-                            </div>
+                    <header class="align-center">
+                        <h2>Devices Connected</h2>
+                            <p></p>
+                        </header>
+                        <div class="image round fit">
+                            <img src="{{ url_for('static', filename='images/telemovel.jpg') }}" alt="" />
                         </div>
-                        <div class="col col2">
-                            <div class="image round fit">
-                                <a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/pic02.jpg') }}" alt="" /></a>
-                                <strong>Penultimo Evento(link to database)</strong>
-                            </div>
-                        </div>
-                        <div class="col col3">
-                            <div class="image round fit">
-                                <a href="generic.html" class="link"><img src="{{ url_for('static', filename='images/pic03.jpg') }}" alt="" /></a>
-                                <strong>Antepenultimo Evento (link to database)</strong>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
 
